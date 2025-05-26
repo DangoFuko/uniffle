@@ -1,18 +1,22 @@
 {
-    "name": "Go 1.19",
+    "name": "Go 1.19 with Docker",
     "image": "mcr.microsoft.com/devcontainers/go:1.19",
     "features": {
-        "ghcr.io/devcontainers/features/go:1": {
-            "version": "1.19"
+        "ghcr.io/devcontainers/features/docker-in-docker:1": {
+            "version": "latest",
+            "moby": true
         }
     },
     "customizations": {
         "vscode": {
             "extensions": [
-                "golang.Go"
+                "golang.Go",
+                "ms-azuretools.vscode-docker"
             ]
         }
     },
-    "forwardPorts": [8080],
-    "postCreateCommand": "go version"
+    "remoteEnv": {
+        "DOCKER_BUILDKIT": "1"
+    },
+    "postCreateCommand": "sudo chmod 666 /var/run/docker.sock && go install github.com/go-delve/delve/cmd/dlv@latest"
 }
