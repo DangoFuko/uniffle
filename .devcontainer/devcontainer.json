@@ -1,0 +1,19 @@
+{
+  "name": "Go Development",
+  "image": "mcr.microsoft.com/vscode/devcontainers/go:0-${VARIANT}",
+  "runArgs": ["--init"],
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "golang.go"
+      ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/go:1": {
+      "version": "1.19" 
+    }
+  },
+  "postCreateCommand": "go version" 
+}
